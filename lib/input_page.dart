@@ -15,6 +15,12 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
+  void onTap(Gender gender) {
+    setState(() {
+      widget.selectedGender = gender;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,50 +33,54 @@ class _InputPageState extends State<InputPage> {
             child: Row(
               children: [
                 Expanded(
-                  child: GestureDetector(
-                    onTap: () {
+                  child: ReusableCard(
+                    color: widget.selectedGender == Gender.male
+                        ? activeCardColor
+                        : inactiveCardColor,
+                    cardChild: genderWidgetContent('male'),
+                    onPress: () => {
                       setState(() {
                         widget.selectedGender = Gender.male;
-                      });
+                      })
                     },
-                    child: ReusableCard(
-                      widget.selectedGender == Gender.male
-                          ? activeCardColor
-                          : inactiveCardColor,
-                      genderWidgetContent('male'),
-                    ),
                   ),
                 ),
                 Expanded(
-                  child: GestureDetector(
-                    onTap: () {
-                      print("tapped on female card!");
+                  child: ReusableCard(
+                    color: widget.selectedGender == Gender.female
+                        ? activeCardColor
+                        : inactiveCardColor,
+                    onPress: () => {
                       setState(() {
                         widget.selectedGender = Gender.female;
-                      });
+                      })
                     },
-                    child: ReusableCard(
-                      widget.selectedGender == Gender.female
-                          ? activeCardColor
-                          : inactiveCardColor,
-                      genderWidgetContent("female"),
-                    ),
+                    cardChild: genderWidgetContent("female"),
                   ),
                 ),
               ],
             ),
           ),
           Expanded(
-            child: ReusableCard(activeCardColor),
+            child: ReusableCard(
+              color: activeCardColor,
+              onPress: () {},
+            ),
           ),
           Expanded(
             child: Row(
               children: [
                 Expanded(
-                  child: ReusableCard(activeCardColor),
+                  child: ReusableCard(
+                    color: activeCardColor,
+                    onPress: () {},
+                  ),
                 ),
                 Expanded(
-                  child: ReusableCard(activeCardColor),
+                  child: ReusableCard(
+                    color: activeCardColor,
+                    onPress: () {},
+                  ),
                 ),
               ],
             ),
