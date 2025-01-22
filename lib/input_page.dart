@@ -1,5 +1,6 @@
 import 'package:bmi_calculator/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'reusable_card.dart';
 import 'gender_widget_content.dart';
 // import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -12,6 +13,8 @@ class InputPage extends StatefulWidget {
 class _InputPageState extends State<InputPage> {
   Gender? selectedGender;
   int height = 180;
+  int weight = 70;
+  int age = 18;
 
   void onTap(Gender gender) {
     setState(() {
@@ -90,7 +93,7 @@ class _InputPageState extends State<InputPage> {
                         thumbColor: Color(0xffeb1555),
                         overlayColor: Color(0x29eb1555),
                         activeTrackColor: Colors.white,
-                        inactiveTrackColor: Color(0xff8d8e98)po ,
+                        inactiveTrackColor: Color(0xff8d8e98),
                         thumbShape: RoundSliderThumbShape(
                           enabledThumbRadius: 15,
                         ),
@@ -118,12 +121,86 @@ class _InputPageState extends State<InputPage> {
                   child: ReusableCard(
                     color: kActiveCardColor,
                     onPress: () {},
+                    cardChild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "WEIGHT",
+                          style: kLabelTextStyle,
+                        ),
+                        Text(
+                          weight.toString(),
+                          style: kNumberTextStyle,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            RoundIconButton(
+                              icon: FontAwesomeIcons.minus,
+                              onTap: () {
+                                setState(() {
+                                  weight--;
+                                });
+                              },
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            RoundIconButton(
+                              icon: FontAwesomeIcons.plus,
+                              onTap: () {
+                                setState(() {
+                                  weight++;
+                                });
+                              },
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
                   ),
                 ),
                 Expanded(
                   child: ReusableCard(
                     color: kActiveCardColor,
                     onPress: () {},
+                    cardChild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "AGE",
+                          style: kLabelTextStyle,
+                        ),
+                        Text(
+                          age.toString(),
+                          style: kNumberTextStyle,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            RoundIconButton(
+                              icon: FontAwesomeIcons.minus,
+                              onTap: () {
+                                setState(() {
+                                  age--;
+                                });
+                              },
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            RoundIconButton(
+                              icon: FontAwesomeIcons.plus,
+                              onTap: () {
+                                setState(() {
+                                  age++;
+                                });
+                              },
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ],
@@ -136,6 +213,31 @@ class _InputPageState extends State<InputPage> {
             width: double.infinity,
           )
         ],
+      ),
+    );
+  }
+}
+
+class RoundIconButton extends StatelessWidget {
+  final IconData icon;
+  final Function onTap;
+
+  RoundIconButton({
+    required this.icon,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return RawMaterialButton(
+      child: Icon(icon),
+      onPressed: () => onTap(),
+      shape: CircleBorder(),
+      fillColor: Color(0xff4c4f5e),
+      elevation: 6,
+      constraints: BoxConstraints.tightFor(
+        width: 56,
+        height: 56,
       ),
     );
   }
