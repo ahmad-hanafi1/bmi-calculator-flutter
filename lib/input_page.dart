@@ -4,9 +4,12 @@ import 'gender_widget_content.dart';
 // import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 const activeCardColor = Color(0xFF1D1E33);
+const inactiveCardColor = Color(0xff111328);
 const containerColor = Color(0xffeb1555);
 
 class InputPage extends StatefulWidget {
+  Gender? selectedGender;
+
   @override
   _InputPageState createState() => _InputPageState();
 }
@@ -24,15 +27,34 @@ class _InputPageState extends State<InputPage> {
             child: Row(
               children: [
                 Expanded(
-                  child: ReusableCard(
-                    activeCardColor,
-                    genderWidgetContent('male'),
+                  child: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        widget.selectedGender = Gender.male;
+                      });
+                    },
+                    child: ReusableCard(
+                      widget.selectedGender == Gender.male
+                          ? activeCardColor
+                          : inactiveCardColor,
+                      genderWidgetContent('male'),
+                    ),
                   ),
                 ),
                 Expanded(
-                  child: ReusableCard(
-                    activeCardColor,
-                    genderWidgetContent("female"),
+                  child: GestureDetector(
+                    onTap: () {
+                      print("tapped on female card!");
+                      setState(() {
+                        widget.selectedGender = Gender.female;
+                      });
+                    },
+                    child: ReusableCard(
+                      widget.selectedGender == Gender.female
+                          ? activeCardColor
+                          : inactiveCardColor,
+                      genderWidgetContent("female"),
+                    ),
                   ),
                 ),
               ],
@@ -64,3 +86,5 @@ class _InputPageState extends State<InputPage> {
     );
   }
 }
+
+enum Gender { male, female }
