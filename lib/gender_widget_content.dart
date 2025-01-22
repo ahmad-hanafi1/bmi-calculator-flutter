@@ -1,7 +1,6 @@
+import 'package:bmi_calculator/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
-const textLayout = TextStyle(fontSize: 18, color: Color(0xFF8d8e98));
 
 class genderWidgetContent extends StatelessWidget {
   final String gender;
@@ -23,7 +22,7 @@ class genderWidgetContent extends StatelessWidget {
         ),
         Text(
           this.gender == "male" ? "MALE" : "FEMALE",
-          style: textLayout,
+          style: kLabelTextStyle,
         )
       ],
     );
