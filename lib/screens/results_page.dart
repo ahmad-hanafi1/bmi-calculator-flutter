@@ -1,5 +1,5 @@
 import 'package:bmi_calculator/components/bottom_button.dart';
-import 'package:bmi_calculator/components/constants.dart';
+import 'package:bmi_calculator/constants.dart';
 import 'package:bmi_calculator/components/reusable_card.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +10,7 @@ class ResultsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("RESULT"),
+        title: Text("BMI CALCULATOR"),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -18,6 +18,8 @@ class ResultsPage extends StatelessWidget {
         children: [
           Expanded(
             child: Container(
+              padding: EdgeInsets.all(15),
+              alignment: Alignment.bottomLeft,
               child: Text(
                 "YOUR RESULT",
                 style: kTitleTextStyle,
